@@ -1,0 +1,93 @@
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+
+div.container{
+    height: 520px;
+    width: 80%;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+
+div h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+    color: #020107;
+}
+
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+label.exist{
+    display: block;
+    margin-top: 30px;
+    font-size: 10px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(16, 4, 4, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+/* input:hover{
+    background-color: rgba(16, 4, 4, 0.973);
+} */
+::placeholder{
+    color: #e5e5e5;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+.exist {
+    font-size: 10px;
+    padding-top: 2px;
+    cursor: pointer;
+}
+.exist:hover {
+    background-color: rgba(16, 4, 4, 0.973);
+}
+.abc {
+    color: red;
+}
+
+.image-with-text {
+    display: flex;
+    align-items: center;
+  }
+  .image-with-text img {
+    margin-right: 10px; /* adjust as needed */
+  }
+
+  .hidden-text {
+    display: none;
+  }
+
+  .validationError {
+    border-color: red;
+  }

@@ -1,0 +1,15 @@
+.abc {
+    color: red;
+}
+
+/* a.active {
+    background-color: #04AA6D;
+    color: white;
+  } */
+
+a{ cursor: pointer; }
+
+a.nav-link:hover {
+    background-color: #ddd;
+    color: black;
+  }

@@ -1,0 +1,47 @@
+<!-- <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+</div> -->
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <h3>SignUp Here</h3>
+
+    <label for="username">Username</label>
+    <input type="text" 
+    placeholder="Email or Phone" 
+    id="username" formControlName="email" 
+    [class.validationError]="!validateEmail && emailTouched" 
+    #usr>
+    <!-- <div class="image-with-text">
+        @if(canUseEmail && !validationError0) {
+            <p style="color:green; font-size: 10px;">Email is allowed</p>
+        } @else {
+            <p [class.hidden-text]="touched" style="color:red; font-size: 10px;">Email not allowed</p>
+        }
+    </div> -->
+    
+    <span>{{checkEmailMsg}}</span>
+    
+    
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" id="password" formControlName="password" #pwd>
+    <div>
+        @if(!validatePassword && passwordTouched) {
+            Password needs to be only alphabet and minimum 3 letters
+        }
+    </div> 
+
+    <label for="confirm-password">Confirm Password</label>
+    <input type="password" placeholder="ConfirmPassword" id="confirm-password" formControlName="confirmpassword" #cpwd>
+    <div>
+        @if(!validateConfirmPassword && passwordTouched && cpasswordTouched) {
+            Password do not match
+        }
+    </div> 
+    <br>
+    <button type="submit" 
+     class="btn btn-primary">
+     SignUp
+    </button>
+  
+</form>
+<!-- [disabled]="!validateEmail || !validatePassword || !validateConfirmPassword" -->
