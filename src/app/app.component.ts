@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   RouterOutlet,
   RouterLink,
   Router,
-  ActivatedRoute,
-  NavigationEnd,
-  Event
+  ActivatedRoute
 } from '@angular/router';
-import { filter, pairwise, map } from 'rxjs/operators';
 
 import { HeaderComponent } from './header-component/header.component';
+import { AccountService } from './auth-service';
 
 @Component({
   selector: 'app-root',
@@ -22,16 +20,13 @@ export class AppComponent implements OnInit {
   title = 'front-end-angular-restAPI';
   page: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  public authService = inject(AccountService);
+
+  constructor() {}
 
   ngOnInit(): void {
-    const test = this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        map((e) => e as NavigationEnd)
-      )
-      .subscribe((e) => {
-        this.page = e.url;
-      });
+    this.authService.autoLogin().subscribe((data) => {
+      console.log(data);
+    });
   }
 }

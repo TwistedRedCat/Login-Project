@@ -1,16 +1,25 @@
 <div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-        <span class="fs-4">KLINIK KHALIFAH</span>
-      </a>
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a routerLink="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <span class="fs-4">KLINIK KHALIFAH</span>
+    </a>
 
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a [class]="{'nav-link': true}" routerLinkActive="active" routerLink="/"
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a [class]="{'nav-link': true}" routerLinkActive="active" routerLink="/"
           [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-        <li class="nav-item"><a [class]="{'nav-link': true}" routerLinkActive="active" routerLink="Login">Login</a></li>
-        <li class="nav-item"><a [class]="{'nav-link': true}" routerLinkActive="active" routerLink="signUp" 
-          [routerLinkActiveOptions]="{exact: true}">SignUp</a></li>
-      </ul>
-    </header>
-   
+
+      @if(loggedIn) {
+      <li class="nav-item"><a [class]="{'nav-link': true}" routerLinkActive="active" routerLink="schedule">Schedule</a>
+      </li>
+      <li class="nav-item"><a [class]="{'nav-link': true}" (click)="onLogout()" routerLinkActive="active"
+          routerLink="logout">{{user}} <br> Logout</a></li>
+      } @else {
+      <li class="nav-item"><a [class]="{'nav-link': true}" routerLinkActive="active" routerLink="login">LogIn</a></li>
+      <li class="nav-item"><a [class]="{'nav-link': true}" routerLinkActive="active" routerLink="signUp">SignUp</a></li>
+      }
+    </ul>
+  </header>
+  <div>
+    {{loggedIn ? 'Online' : 'Offline'}}
   </div>
+</div>

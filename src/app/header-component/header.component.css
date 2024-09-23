@@ -6,6 +6,9 @@
     background-color: #04AA6D;
     color: white;
   } */
+   a {
+    text-align: center;
+   }
 
 a{ cursor: pointer; }
 

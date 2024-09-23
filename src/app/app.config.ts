@@ -1,11 +1,19 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
 
 import { routes } from './app.routes';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptors,
+  withInterceptorsFromDi
+} from '@angular/common/http';
+import { AuthInterceptor } from './auth-interceptor.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+  providers: [
+    provideRouter(routes),
+    provideHttpClient(withInterceptorsFromDi(), withInterceptors([])),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ]
 };
-

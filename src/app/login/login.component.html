@@ -2,14 +2,14 @@
         <div class="shape"></div>
         <div class="shape"></div>
 </div> -->
-<form>
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <h3>Login Here</h3>
 
     <label for="username">Username</label>
-    <input type="text" placeholder="Email or Phone" id="username">
+    <input type="text" placeholder="Email or Phone" id="username" formControlName="email">
 
     <label for="password">Password</label>
-    <input type="password" placeholder="Password" id="password">
+    <input type="password" placeholder="Password" id="password" formControlName="password">
     <br>
-    <button type="button" class="btn btn-primary">Log In</button>
+    <button type="submit" class="btn btn-primary">Log In</button>
 </form>

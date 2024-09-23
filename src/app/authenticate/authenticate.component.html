@@ -1,2 +1,68 @@
-<label for="auth">Enter your verification code below</label>
-<input type="text" id="auth">
+<div id="app">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="position-relative">
+            <div class="card p-2 text-center">
+                <h6>Please enter the one time password from email <br> </h6>
+                <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+                    <input class="m-2 text-center form-control rounded" type="text" id="input1"
+                        v-on:keyup="inputenter(1)" maxlength="1" #code1 />
+                    <input class="m-2 text-center form-control rounded" v-on:keyup="inputenter(2)" type="text"
+                        id="input2" maxlength="1" #code2 />
+                    <input class="m-2 text-center form-control rounded" v-on:keyup="inputenter(3)" type="text"
+                        id="input3" maxlength="1" #code3 />
+                    <input class="m-2 text-center form-control rounded" v-on:keyup="inputenter(4)" type="text"
+                        id="input4" maxlength="1" #code4 />
+                </div>
+                <div class="mt-4"> <button (click)="onCode(code1.value, code2.value, code3.value, code4.value)"
+                        class="btn btn-danger px-4 validate">Validate</button>
+                </div>
+                <div class="mt-3 content d-flex justify-content-center align-items-center"> <span>Didn't get the
+                        code(Unavailable - work in progress)</span> <a href="#"
+                        class="text-decoration-none ms-3">Resend(1/3)</a> </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;900&display=swap">
+    <link rel="stylesheet" href="./authenticate.component.css">
+</head>
+
+
+<main class="card">
+    <h1 class="card-title">Enter Verification Code</h1>
+    <h6 class="card-subtitle">We have sent a code to</h6>
+    <a href="#">husingmail.com</a>
+    <div>
+        <input type="text" maxlength="1"  name="first" id="first" data-next="second">
+        <input type="text" maxlength="1"  name="second" id="first" data-next="third">
+        <input type="text" maxlength="1"  name="third" id="first" data-next="fourth">
+        <input type="text" maxlength="1"  name="fourth" id="first" data-next="fourth">
+    </div>
+    <div class="resent">
+        <p>Didn't get a code? <a href="#">Click to Resent</a></p>
+    </div>
+    <button type="button" class="card-button">Verify</button>
+    
+    <div class="success-container">
+        <h3 class="card-title">That is correct</h3>
+        <p class="card-subtitle">You are going to be redirected in a moment..</p>
+    </div>
+</main> -->
+
+
+
+
+<!-- 
+<label for="auth">Enter your verification code below in {{counter}}</label>
+<input type="text" id="auth" #code>
+<button type="button" class="btn btn-primary" (click)="onCode(code)">Submit</button> -->
