@@ -96,7 +96,7 @@ export class AccountService {
 
   logOut() {
     this.isLoggedIn.next(false);
-    console.log('you reached here');
+    console.log('you reached logout here');
     localStorage.removeItem('currentUser');
   }
 
