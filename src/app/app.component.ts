@@ -6,7 +6,7 @@ import {
   ActivatedRoute
 } from '@angular/router';
 
-import { HeaderComponent } from './header-component/header.component';
+import { HeaderComponent } from './header/header.component';
 import { AccountService } from './auth-service';
 
 @Component({

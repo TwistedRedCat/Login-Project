@@ -1,14 +1,11 @@
-import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, timer } from 'rxjs';
-// import { ExternalLibrariesService } from '../script-service';
 
 @Component({
   selector: 'app-authenticate',
   standalone: true,
-  imports: [DatePipe],
   templateUrl: './authenticate.component.html',
   styleUrl: './authenticate.component.css'
 })
@@ -17,29 +14,43 @@ export class AuthenticateComponent implements OnInit, OnDestroy {
   countDown!: Subscription;
   route = inject(ActivatedRoute);
   router = inject(Router);
+  konter = signal<any>(60);
+
+  // konterDown() {
+  //   setInterval(() => {
+  //     this.konter--;
+  //   },1000);
+  // }
 
   // private externalLibs = [
   //   'https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;900&display=swap'
   // ];
 
-  counter = 10;
+  counter = 60;
   tick = 1000;
 
   ngOnInit() {
-    // this.externalLibs.forEach((libSrc) =>
-    //   ExternalLibrariesService.injectLib(libSrc)
+    // this.countDown = timer(500, this.tick).subscribe(
+    //   (): number | void => {
+    //     while (this.counter > 0) {
+    //       return --this.counter;
+    //     }
+    //     // return this.countDown.unsubscribe;
+    //     console.log(this.countDown);
+    //     return this.countDown.unsubscribe();
+    //   }
     // );
 
-    this.countDown = timer(0, this.tick).subscribe(() => {
+    const intervalTracker = setInterval(() => {
       while (this.counter > 0) {
         return --this.counter;
       }
-      return this.countDown.unsubscribe;
-    });
+      return clearInterval(intervalTracker);
+    }, this.tick);
   }
 
   ngOnDestroy() {
-    this.countDown.unsubscribe;
+    this.countDown.unsubscribe();
   }
 
   onCode(code1: string, code2: string, code3: string, code4: string) {

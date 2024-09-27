@@ -80,7 +80,7 @@ export class SignUpComponent
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.date = params['activePage'];
-      console.log(this.date); // Print the parameter to the console.
+      // console.log(this.date); // Print the parameter to the console.
     });
   }
 
@@ -165,7 +165,7 @@ export class SignUpComponent
       })
       .subscribe((data: any) => {
         if (data.message !== `User ${this.email} created`) {
-          console.log(data.verify);
+          // console.log(data.verify);
         }
         this.accountService.Registring = true;
         this.router.navigate(['/authenticate'], {

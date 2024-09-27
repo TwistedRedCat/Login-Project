@@ -16,15 +16,15 @@ export class AccountService {
   public obj!: Object;
 
   public isLoggedIn = new Subject<boolean>();
-  public isLoggedIn$ = this.isLoggedIn.asObservable();
+  // public isLoggedIn$ = this.isLoggedIn.asObservable();
 
   public loggedEmail = new Subject<string>();
-  public loggedEmail$ = this.loggedEmail.asObservable();
+  // public loggedEmail$ = this.loggedEmail.asObservable();
 
   public currentUser!: {
     token: string;
   };
-  public token: string | undefined;
+  public token: string | undefined; //same as token? syntax
 
   private http = inject(HttpClient);
   private router = inject(Router);
@@ -33,38 +33,12 @@ export class AccountService {
     this.isRegistring = data;
   }
 
-  // getToken() {
-  //   this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
-  //   if (!this.currentUser) {
-  //     this.token = undefined;
-  //     return;
-  //   }
-  //   console.log(this.currentUser.token);
-  //   this.token = this.currentUser.token; // your token
-  // }
-
   logIn(email: string, password: string) {
-    // this.getToken();
-    // const headerInfo = {
-    //   'Content-Type': 'application/json',
-    //   'Accept': 'application/json',
-    //   // 'Access-Control-Allow-Headers': 'Content-Type',
-    //   'Authorization': 'Bearer ' + this.token
-    // };
-
-    // const requestOptions = {
-    //   headers: new HttpHeaders(headerInfo)
-    // };
-
     return this.http
-      .post(
-        'http://localhost:8080/login',
-        {
-          email: email,
-          password: password
-        }
-        // requestOptions
-      )
+      .post('http://localhost:8080/login', {
+        email: email,
+        password: password
+      })
       .pipe(
         tap((data: any) => {
           this.router.navigate(['/']);
@@ -72,6 +46,7 @@ export class AccountService {
           this.loggedEmail.next(data.email);
           console.log(data.token);
           localStorage.setItem('currentUser', data.token);
+          this.autoLogOut();
         }),
         catchError((error: any) => {
           this.router.navigate(['/err']);
@@ -90,15 +65,20 @@ export class AccountService {
       tap((data: any) => {
         this.isLoggedIn.next(true);
         this.loggedEmail.next(data.email);
+        this.autoLogOut();
       })
     );
   }
 
   logOut() {
     this.isLoggedIn.next(false);
-    console.log('you reached logout here');
     localStorage.removeItem('currentUser');
   }
 
-  autoLogOut() {}
+  autoLogOut() {
+    const x = setInterval(() => {
+      this.logOut();
+      clearInterval(x);
+    }, 10000);
+  }
 }
